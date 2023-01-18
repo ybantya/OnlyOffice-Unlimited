@@ -4,12 +4,13 @@ FILE=OO_PubKey
 if test -f "$FILE"; then
   echo Patch has already been applied. Starting DocumentServer...
 else
-  apt-get update && apt-get install -y python3-dev vim build-essential
+  apt-get update
+  apt-get install -y python3.8 python3.8-dev vim build-essential
     sed -i 's/time.clock/time.time/g' /usr/local/lib/python3.8/dist-packages/Crypto/Random/_UserFriendlyRNG.py
     sed -i 's/allow/#allow/g' /etc/onlyoffice/documentserver/nginx/includes/ds-docservice.conf
     sed -i 's/deny/#deny/g' /etc/onlyoffice/documentserver/nginx/includes/ds-docservice.conf
     wget https://bootstrap.pypa.io/get-pip.py
-    python3 get-pip.py
+    python3.8 get-pip.py
     pip install pycrypto
     rm -f /var/www/onlyoffice/Data/license.lic
     
@@ -90,7 +91,7 @@ for file in files:
 
 EOF
 
-    python3 index.py
+    python3.8 index.py
 
     echo Patching docservice and convert...
 
