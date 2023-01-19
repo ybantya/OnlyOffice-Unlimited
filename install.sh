@@ -60,7 +60,7 @@ finalSignature = signature.hex()
 licenseFile['signature'] = finalSignature
 
 f = open("OO_License", "w+")
-f.write(json.dumps(licenseFile))
+f.write(json.dumps(licenseFile, separators=(',', ':')))
 f.close
 
 f = open("OO_PubKey", "w+")
@@ -68,7 +68,7 @@ f.write(publKey.decode('utf-8'))
 f.close()
 
 print("The license file has been saved to OO_License. Here's the content :")
-print(json.dumps(licenseFile))
+print(json.dumps(licenseFile, separators=(',', ':')))
 print("It will be placed automatically in the Data directory of OnlyOffice")
 
 copyfile("OO_License", "/var/www/onlyoffice/Data/license.lic")
